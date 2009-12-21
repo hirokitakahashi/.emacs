@@ -6,8 +6,9 @@
 
 ;; frame and fonts
 ;(fixed-width-set-fontset "msgothic" 14)
-(setq initial-frame-alist
-       (append (list
+(if (string-equal system-name "TOSHIBA")
+    (setq initial-frame-alist
+	  (append (list
 ;                  '(foreground-color . "white")
 ;                  '(background-color . "#333366")
 ;                  '(border-color . "black")
@@ -18,7 +19,10 @@
                   '(top . 0)
 ;                  '(left . 340)
                   )
-               initial-frame-alist))
+               initial-frame-alist)
+	  )
+)
+
 (setq default-frame-alist initial-frame-alist)
 
 ;; emacs server
@@ -60,6 +64,12 @@
 ;===================================
 (require 'browse-kill-ring)
 (define-key ctl-x-map "\C-y" 'browse-kill-ring)
+
+;=======================================================================
+; git
+;=======================================================================
+
+(require 'git-mswin)
 
 ;=======================================================================
 ; Emacs lisp mode
