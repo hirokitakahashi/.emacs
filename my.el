@@ -3,6 +3,9 @@
 ;=======================================================================
 ;; location of external packages
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
+(progn (cd "~/.emacs.d/site-lisp")
+       (normal-top-level-add-subdirs-to-load-path)
+)
 
 ;; frame and fonts
 ;(fixed-width-set-fontset "msgothic" 14)
@@ -63,13 +66,35 @@
 ; kill ring
 ;===================================
 (require 'browse-kill-ring)
-(define-key ctl-x-map "\C-y" 'browse-kill-ring)
-
-;=======================================================================
+(define-key ctl-x-map (kbd "C-y") 'browse-kill-ring)
+					;=======================================================================
 ; git
 ;=======================================================================
 
-(require 'git-mswin)
+;(require 'git-mswin)
+(require 'git)
+
+;=======================================================================
+; auto-install
+;=======================================================================
+
+(require 'auto-install)
+(setq auto-install-directory "~/.emacs.d/site-lisp/")
+
+;=======================================================================
+; anything
+;=======================================================================
+
+(require 'anything-config)
+(add-to-list 'anything-sources 'anything-c-source-emacs-commands)
+(define-key ctl-x-map (kbd "C-a") 'anything) ;Ctrl-x Ctrl-a for anything command
+
+;=======================================================================
+; yasnippet
+;=======================================================================
+
+(require 'yasnippet-bundle)
+(yas/define-snippets 'python-mode '(("env" "#!/usr/bin/env python" "#!/usr...")))
 
 ;=======================================================================
 ; Emacs lisp mode
@@ -87,7 +112,7 @@
 
 (add-hook 'emacs-lisp-mode-hook
 	  '(lambda ()
-	     (define-key emacs-lisp-mode-map "\C-c\C-c" 'elisp-comment-block)
+	     (define-key emacs-lisp-mode-map (kbd "C-c C-c") 'elisp-comment-block)
 	     )
 	  )
 
@@ -125,10 +150,11 @@
 ;=======================================================================
 
 ;; Open ~/.emacs
+(setq dotemacsfile "~/.emacs.d/my.el")
 (defun open-dot-emacs ()
   "open ~/.emacs file."
   (interactive)
-  (find-file "~/.emacs")
+  (find-file dotemacsfile)
 )
 
 ;=======================================================================
@@ -136,4 +162,4 @@
 ;=======================================================================
 
 ;; undo
-(global-set-key "\C-\\" 'undo)
+(global-set-key (kbd "C-\\") 'undo)
