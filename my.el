@@ -108,6 +108,40 @@
 (yas/define-snippets 'html-mode '(("doctype" "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">" "<!DOCTYPE ...")))
 
 ;=======================================================================
+; YaTeX
+;=======================================================================
+(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
+(setq auto-mode-alist (cons '("\\.tex$" . yatex-mode) auto-mode-alist))
+(add-to-list 'load-path "~/.emacs.d/site-lisp/yatex")
+;(setq YaTeX-kanji-code 1)
+
+(setq tex-command "latex") ; tex command
+(setq dvi2-command "dviout") ; previewer command
+;(setq bibtex-command "jbibtex") ;bibtex command
+(setq dviprint-command-format "dvipdfmx %s ") ;print to pdf file
+
+(setq YaTeX-use-AMS-LaTeX t)
+(add-hook 'yatex-mode-load-hook
+	  (function
+	  (lambda ()
+	   (YaTeX-define-begend-key "ba" "align")
+	   (YaTeX-define-begend-key "bf" "figure")
+	   )
+	  ))
+
+;; Enable local-variable
+(add-hook 'yatex-mode-hook
+          '(lambda ()
+               (setq enable-local-variables t)
+	       ))
+
+;; comment, uncomment commands
+(add-hook 'yatex-mode-hook
+	  '(lambda ()
+	     (local-set-key "\C-c\C-c" 'comment-region)
+	     (local-set-key "\C-c\C-u" 'uncomment-region) ))
+
+;=======================================================================
 ; Emacs lisp mode
 ;=======================================================================
 (defun elisp-comment-block ()
