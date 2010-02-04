@@ -72,7 +72,8 @@
 ;=======================================================================
 
 ;(require 'git-mswin)
-(require 'git)
+;(require 'git)
+;(require 'git-emacs)
 
 ;=======================================================================
 ; auto-install
@@ -85,9 +86,18 @@
 ; anything
 ;=======================================================================
 
-(require 'anything-config)
-(add-to-list 'anything-sources 'anything-c-source-emacs-commands)
-(define-key ctl-x-map (kbd "C-a") 'anything) ;Ctrl-x Ctrl-a for anything command
+;(require 'anything-config)
+;(add-to-list 'anything-sources 'anything-c-source-emacs-commands)
+;; (define-key ctl-x-map (kbd "C-a") 'anything) ;Ctrl-x Ctrl-a for anything command
+;; (setq anything-sources
+;;       '(anything-c-source-buffers+
+;; 	anything-c-source-recentf
+;; 	anything-c-source-emacs-variables
+;; 	anything-c-source-emacs-commands
+;; 	anything-c-source-emacs-functions
+;; 	anything-c-source-files-in-current-dir
+;; 	anything-c-source-kill-ring
+;; 	))
 
 ;=======================================================================
 ; yasnippet
@@ -95,6 +105,7 @@
 
 (require 'yasnippet-bundle)
 (yas/define-snippets 'python-mode '(("env" "#!/usr/bin/env python" "#!/usr...")))
+(yas/define-snippets 'html-mode '(("doctype" "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">" "<!DOCTYPE ...")))
 
 ;=======================================================================
 ; Emacs lisp mode
