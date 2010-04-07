@@ -105,7 +105,19 @@
 
 (require 'yasnippet-bundle)
 (yas/define-snippets 'python-mode '(("env" "#!/usr/bin/env python" "#!/usr...")))
+
 (yas/define-snippets 'html-mode '(("doctype" "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">" "<!DOCTYPE ...")))
+
+(yas/define-snippets 'yatex-mode '(("preamble" "%#!latexmk main.tex
+\\documentclass[a4paper,11pt]{article}
+\\usepackage[dvipdfm]{graphicx}
+\\usepackage{amsmath, amssymb}
+" "\\documentclass...") 
+("title" "\\title{}
+\\author{}
+\\date{}
+" "\\title..."))
+)
 
 ;=======================================================================
 ; YaTeX
@@ -116,7 +128,7 @@
 ;(setq YaTeX-kanji-code 1)
 
 (setq tex-command "latex") ; tex command
-(setq dvi2-command "dviout") ; previewer command
+(setq dvi2-command "C:/dviout/dviout.exe") ; previewer command
 ;(setq bibtex-command "jbibtex") ;bibtex command
 (setq dviprint-command-format "dvipdfmx %s ") ;print to pdf file
 
@@ -136,10 +148,33 @@
 	       ))
 
 ;; comment, uncomment commands
-(add-hook 'yatex-mode-hook
-	  '(lambda ()
-	     (local-set-key "\C-c\C-c" 'comment-region)
-	     (local-set-key "\C-c\C-u" 'uncomment-region) ))
+;(add-hook 'yatex-mode-hook
+;	  '(lambda ()
+;	     (local-set-key "\C-c\C-c" 'comment-region)
+;	     (local-set-key "\C-c\C-u" 'uncomment-region) ))
+
+;=======================================================================
+; RefTeX
+;=======================================================================
+
+(add-hook 'yatex-mode-hook '(lambda ()
+			      (reftex-mode t)
+			      (define-key reftex-mode-map
+				(concat YaTeX-prefix ">") 'YaTeX-comment-region)
+			      (define-key reftex-mode-map
+				(concat YaTeX-prefix "<") 'YaTeX-uncomment-region))) 
+
+;; (setq TeX-parse-self t) ; Enable auto parsing of file
+;; (setq-default TeX-master nil) ; Set master-file-name manually
+
+;; (setq reftex-label-alist
+;;       '(
+;; ;	(nil ?e nil "~\\refeq{%s}" nil nil)
+;; 	(nil ?f nil "~\\reffig{%s}" nil nil)
+;; 	(nil ?s nil "~\\refsec{%s}" nil nil)
+;; 	(nil ?t nil "~\\reftab{%s}" nil nil))) ;Change the reference commands for equation, figure, and section.
+
+(setq reftex-insert-label-flags '("s" "sfte")) ;In a section enviroment, the label is derived automatically. In other enviroments, it prompts a user.
 
 ;=======================================================================
 ; Emacs lisp mode
