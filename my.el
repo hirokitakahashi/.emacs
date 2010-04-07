@@ -10,8 +10,9 @@
 ;; frame and fonts
 ;(fixed-width-set-fontset "msgothic" 14)
 (if (string-equal system-name "TOSHIBA")
-    (setq initial-frame-alist
-	  (append (list
+    (progn 
+      (setq initial-frame-alist
+	    (append (list
 ;                  '(foreground-color . "white")
 ;                  '(background-color . "#333366")
 ;                  '(border-color . "black")
@@ -21,9 +22,15 @@
                   '(height . 30)
                   '(top . 0)
 ;                  '(left . 340)
-                  )
-               initial-frame-alist)
-	  )
+		  )
+		    initial-frame-alist
+		    )
+	    )
+      ;; display time on mode line
+      (setq display-time-string-forms
+	    '(day "/" month "/" year " " dayname " " 24-hours ":" minutes " "))
+      (display-time)
+    )
 )
 
 (setq default-frame-alist initial-frame-alist)
@@ -243,3 +250,4 @@
 
 ;; undo
 (global-set-key (kbd "C-\\") 'undo)
+(global-set-key (kbd "<kanji>") 'toggle-input-method)
