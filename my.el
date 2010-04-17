@@ -134,7 +134,11 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/yatex")
 ;(setq YaTeX-kanji-code 1)
 
-(setq tex-command "platex") ; tex command
+;; latex command
+(if (string-equal system-name "TOSHIBA")
+    (setq tex-command "platex")
+ )
+
 (setq dvi2-command "C:/dviout/dviout.exe") ; previewer command
 ;(setq bibtex-command "jbibtex") ;bibtex command
 (setq dviprint-command-format "dvipdfmx %s ") ;print to pdf file
