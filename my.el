@@ -134,7 +134,7 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/yatex")
 ;(setq YaTeX-kanji-code 1)
 
-(setq tex-command "latex") ; tex command
+(setq tex-command "platex") ; tex command
 (setq dvi2-command "C:/dviout/dviout.exe") ; previewer command
 ;(setq bibtex-command "jbibtex") ;bibtex command
 (setq dviprint-command-format "dvipdfmx %s ") ;print to pdf file
@@ -250,4 +250,4 @@
 
 ;; undo
 (global-set-key (kbd "C-\\") 'undo)
-(global-set-key (kbd "<kanji>") 'toggle-input-method)
+;; (global-set-key (kbd "<kanji>") 'toggle-input-method)
