@@ -60,8 +60,9 @@
 ;; disable the warning bell
 (setq visible-bell t)
 
-;; line wrapping at word boundary
-(global-visual-line-mode t)
+;; line wrapping at word boundary avialable only emacs 23 or later
+(if (>= emacs-major-version 23)
+    (global-visual-line-mode t))
 
 ;===================================
 ; switch buffer
