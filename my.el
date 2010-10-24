@@ -117,15 +117,25 @@
 
 (yas/define-snippets 'html-mode '(("doctype" "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">" "<!DOCTYPE ...")))
 
-(yas/define-snippets 'yatex-mode '(("preamble" "%#!latexmk main.tex
+(yas/define-snippets 'yatex-mode '(("preamble" "%#!latexmk
 \\documentclass[a4paper,11pt]{article}
 \\usepackage[dvipdfm]{graphicx}
 \\usepackage{amsmath, amssymb}
-" "\\documentclass...") 
+" "\\documentclass...")
+
 ("title" "\\title{}
 \\author{}
 \\date{}
-" "\\title..."))
+" "\\title...")
+
+("figure" "\\begin{figure}[htbp]
+ \\begin{center}
+  \\includegraphics[width=\linewidth]{fig.eps}
+  \\caption{}
+ \\end{center}
+\\end{figure}
+" "\\begin{figure}...")
+)
 )
 
 ;=======================================================================
@@ -144,7 +154,7 @@
 
 (setq dvi2-command "C:/dviout/dviout.exe") ; previewer command
 ;(setq bibtex-command "jbibtex") ;bibtex command
-(setq dviprint-command-format "dvipdfmx %s ") ;print to pdf file
+(setq dviprint-command-format "dvipdfm %s ") ;print to pdf file
 
 (setq YaTeX-use-AMS-LaTeX t)
 (add-hook 'yatex-mode-load-hook
