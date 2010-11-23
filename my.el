@@ -313,7 +313,11 @@
   (define-key ctl-x-map "%" 'paren-match)
   )
 
-
+;=======================================================================
+; word-count
+;=======================================================================
+(autoload 'word-count-mode "word-count" "Minor mode to count words." t nil)
+(global-set-key "\M-+" 'word-count-mode)
 
 ;=======================================================================
 ; Global key-bindings
