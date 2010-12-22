@@ -170,6 +170,10 @@
           '(lambda ()
                (setq enable-local-variables t)
 	       ))
+;; Disable auto-fill
+(add-hook ' yatex-mode-hook
+ '(lambda () (auto-fill-mode -1))
+)
 
 ;; comment, uncomment commands
 ;(add-hook 'yatex-mode-hook
