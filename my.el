@@ -149,6 +149,7 @@
 ;; latex command
 (if (string-equal system-name "TOSHIBA")
     (setq tex-command "platex")
+  (setq tex-command "latex") ;else part
  )
 
 (setq dvi2-command "C:/dviout/dviout.exe") ; previewer command
@@ -169,6 +170,10 @@
           '(lambda ()
                (setq enable-local-variables t)
 	       ))
+;; Disable auto-fill
+(add-hook ' yatex-mode-hook
+ '(lambda () (auto-fill-mode -1))
+)
 
 ;; Disable auto-fill
 (add-hook ' yatex-mode-hook
