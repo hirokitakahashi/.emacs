@@ -121,6 +121,9 @@
 \\documentclass[a4paper,11pt]{article}
 \\usepackage[dvipdfm]{graphicx}
 \\usepackage{amsmath, amssymb}
+\\usepackage{import}
+\\usepackage{simplemargins}
+\\setallmargins{1in}
 " "\\documentclass...")
 
 ("title" "\\title{}
