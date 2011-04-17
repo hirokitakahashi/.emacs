@@ -174,10 +174,6 @@
           '(lambda ()
                (setq enable-local-variables t)
 	       ))
-;; Disable auto-fill
-(add-hook ' yatex-mode-hook
- '(lambda () (auto-fill-mode -1))
-)
 
 ;; Disable auto-fill
 (add-hook ' yatex-mode-hook
