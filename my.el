@@ -134,7 +134,7 @@
 
 ("figure" "\\begin{figure}[htbp]
  \\begin{center}
-  \\includegraphics[width=\linewidth]{fig.eps}
+  \\includegraphics[width=\\linewidth]{fig.eps}
   \\caption{}
  \\end{center}
 \\end{figure}
