@@ -334,6 +334,14 @@
 (setq-default ispell-program-name "aspell") ;to execute, type M-x ispell
 
 ;=======================================================================
+; cua-mode
+;=======================================================================
+(cua-mode t)
+(setq cua-enable-cua-keys nil) ;disable accompanying key strokes
+;(require 'sense-region)
+;(sense-region-on)
+
+;=======================================================================
 ; Global key-bindings
 ;=======================================================================
 
