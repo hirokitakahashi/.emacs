@@ -118,14 +118,30 @@
 
 (yas/define-snippets 'html-mode '(("doctype" "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">" "<!DOCTYPE ...")))
 
-(yas/define-snippets 'yatex-mode '(("preamble" "%#!latexmk
+(yas/define-snippets 'yatex-mode '(
+("preamble latexmk" "%#!latexmk
 \\documentclass[a4paper,11pt]{article}
 \\usepackage[dvipdfm]{graphicx}
 \\usepackage{amsmath, amssymb}
 \\usepackage{import}
 \\usepackage{simplemargins}
 \\setallmargins{1in}
-" "\\documentclass...")
+" "%#!latexmk \\documentclass...")
+
+("preamble pdflatex" "%#!pdflatex
+\\documentclass[a4paper,11pt]{article}
+\\usepackage{graphicx}
+\\usepackage{amsmath, amssymb}
+\\usepackage{import}
+\\usepackage{simplemargins}
+\\setallmargins{1in}
+" "%#!pdflatex \\documentclass...")
+
+("beamer two-column" "\\begin{columns}
+\\column{0.5\\textwidth}
+\\column{0.5\\textwidth}
+\\end{columns}
+" "\\begin{columns}...")
 
 ("title" "\\title{}
 \\author{}
@@ -340,6 +356,11 @@
 (setq cua-enable-cua-keys nil) ;disable accompanying key strokes
 ;(require 'sense-region)
 ;(sense-region-on)
+
+;=======================================================================
+; whitespace
+;=======================================================================
+(require 'whitespace)
 
 ;=======================================================================
 ; Global key-bindings
