@@ -182,6 +182,7 @@
 	  (lambda ()
 	   (YaTeX-define-begend-key "ba" "align")
 	   (YaTeX-define-begend-key "bf" "figure")
+	   (YaTeX-define-begend-key "bF" "frame")
 	   )
 	  ))
 
