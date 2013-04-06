@@ -163,7 +163,7 @@
 ;=======================================================================
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 (setq auto-mode-alist (cons '("\\.tex$" . yatex-mode) auto-mode-alist))
-(add-to-list 'load-path "~/.emacs.d/site-lisp/yatex")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/yatex1.76")
 ;(setq YaTeX-kanji-code 1)
 
 ;; latex command
@@ -193,7 +193,7 @@
 	       ))
 
 ;; Disable auto-fill
-(add-hook ' yatex-mode-hook
+(add-hook 'yatex-mode-hook
  '(lambda () (auto-fill-mode -1))
 )
 
@@ -206,7 +206,7 @@
 ;=======================================================================
 ; RefTeX
 ;=======================================================================
-
+;; (add-hook 'yatex-mode-hook 'turn-on-reftex)
 (add-hook 'yatex-mode-hook '(lambda ()
 			      (reftex-mode t)
 			      (define-key reftex-mode-map
@@ -214,6 +214,7 @@
 			      (define-key reftex-mode-map
 				(concat YaTeX-prefix "<") 'YaTeX-uncomment-region))) 
 
+;; (setq auto-mode-alist (cons '("\\.tex$" . reftex-mode) auto-mode-alist))
 ;; (setq TeX-parse-self t) ; Enable auto parsing of file
 ;; (setq-default TeX-master nil) ; Set master-file-name manually
 
@@ -280,7 +281,10 @@
 ;=======================================================================
 
 ;; Open ~/.emacs
-(setq dotemacsfile "~/.emacs.d/my.el")
+(if (string-equal system-name "CSLP009526")
+    (setq dotemacsfile "~/MyPrograms/dot_emacs/trunk/my.el")
+    (setq dotemacsfile "~/.emacs.d/my.el")
+)
 (defun open-dot-emacs ()
   "open ~/.emacs file."
   (interactive)
