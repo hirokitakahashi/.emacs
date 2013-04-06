@@ -58,7 +58,8 @@
 (setq inhibit-splash-screen t)
 
 ;; disable the warning bell
-(setq visible-bell t)
+;; (setq visible-bell t)
+(setq ring-bell-function 'ignore)
 
 ;; line wrapping at word boundary avialable only emacs 23 or later
 (if (>= emacs-major-version 23)
