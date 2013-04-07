@@ -284,7 +284,10 @@
 ;; Open ~/.emacs
 (if (string-equal system-name "CSLP009526")
     (setq dotemacsfile "~/MyPrograms/dot_emacs/trunk/my.el")
-    (setq dotemacsfile "~/.emacs.d/my.el")
+    (if (string-equal system-name "Hirokis-MacBook-Air.local")
+	(setq dotemacsfile "~/.emacs.d/.emacs-git/my.el")
+        (setq dotemacsfile "~/.emacs.d/my.el")
+    )
 )
 (defun open-dot-emacs ()
   "open ~/.emacs file."
