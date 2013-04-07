@@ -295,6 +295,20 @@
   (find-file dotemacsfile)
 )
 
+;; Open macro.tex
+(if (string-equal system-name "CSLP009526")
+    (setq macrotexfile "~/Files/TeX/marco.tex")
+    (if (string-equal system-name "Hirokis-MacBook-Air.local")
+	(setq macrotexfile "~/Library/texmf/tex/latex/macro/macro.tex")
+        (setq macrotexfile "~/Files/TeX/macro.tex")
+    )
+)
+(defun open-macro-tex ()
+  "open macro.tex file."
+  (interactive)
+  (find-file macrotexfile)
+)
+
 ;=======================================================================
 ; mic-paren
 ;=======================================================================
