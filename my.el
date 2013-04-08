@@ -65,6 +65,27 @@
 (if (>= emacs-major-version 23)
     (global-visual-line-mode t))
 
+;=======================================================================
+; machine dependent variables
+;=======================================================================
+;; path to .emacs file, macro.tex
+(if (string-equal system-name "CSLP009526") ;Dell laptop
+    (progn
+        (setq dotemacsfile "~/MyPrograms/dot_emacs/trunk/my.el")
+	(setq macrotexfile "~/Files/TeX/marco.tex")
+    )
+    (if (string-equal system-name "Hirokis-MacBook-Air.local")
+	(progn
+	    (setq dotemacsfile "~/.emacs.d/.emacs-git/my.el")
+	    (setq macrotexfile "~/Library/texmf/tex/latex/macro/macro.tex")
+	)
+        (progn
+            (setq dotemacsfile "~/.emacs.d/my.el")
+	    (setq macrotexfile "~/Files/TeX/macro.tex")
+	)
+    )
+)
+
 ;===================================
 ; switch buffer
 ;===================================
@@ -119,14 +140,16 @@
 
 (yas/define-snippets 'html-mode '(("doctype" "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">" "<!DOCTYPE ...")))
 
-(yas/define-snippets 'yatex-mode '(
+(yas/define-snippets 'yatex-mode `(
 ("preamble latexmk" "%#!latexmk
 \\documentclass[a4paper,11pt]{article}
 \\usepackage[dvipdfm]{graphicx}
 \\usepackage{amsmath, amssymb}
 \\usepackage{import}
 \\usepackage{simplemargins}
+\\usepackage{titling}
 \\setallmargins{1in}
+\\setlength{\droptitle}{-1in}
 " "%#!latexmk \\documentclass...")
 
 ("preamble pdflatex" "%#!pdflatex
@@ -135,8 +158,19 @@
 \\usepackage{amsmath, amssymb}
 \\usepackage{import}
 \\usepackage{simplemargins}
+\\usepackage{titling}
 \\setallmargins{1in}
+\\setlength{\droptitle}{-1in}
 " "%#!pdflatex \\documentclass...")
+
+("preamble tikz standalone" "%#!pdflatex
+\documentclass[class=minimal,border=0pt]{standalone}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\pagestyle{empty}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing}
+" "\documentclass[class=minimal,border=0pt]{standalone}")
 
 ("beamer two-column" "\\begin{columns}
 \\column{0.5\\textwidth}
@@ -149,13 +183,24 @@
 \\date{}
 " "\\title...")
 
+;; Using backquote to selectively evaluate the following function while quoting others
+("import" ,(format "\\import{%s}{%s}" (file-name-directory (expand-file-name macrotexfile)) (file-name-nondirectory (expand-file-name macrotexfile))) "\\import{...")
+
 ("figure" "\\begin{figure}[htbp]
  \\begin{center}
-  \\includegraphics[width=\\linewidth]{fig.eps}
+  \\includegraphics[width=\\linewidth]{}
   \\caption{}
  \\end{center}
 \\end{figure}
 " "\\begin{figure}...")
+
+("wrapfigure" "\\begin{wrapfigure}{r}{0.5\\textwidth}
+ \\begin{center}
+  \\includegraphics[width=\\linewidth]{}
+  \\caption{}
+ \\end{center}
+\\end{wrapfigure}
+" "\\begin{wrapfig}...")
 )
 )
 
@@ -282,13 +327,6 @@
 ;=======================================================================
 
 ;; Open ~/.emacs
-(if (string-equal system-name "CSLP009526")
-    (setq dotemacsfile "~/MyPrograms/dot_emacs/trunk/my.el")
-    (if (string-equal system-name "Hirokis-MacBook-Air.local")
-	(setq dotemacsfile "~/.emacs.d/.emacs-git/my.el")
-        (setq dotemacsfile "~/.emacs.d/my.el")
-    )
-)
 (defun open-dot-emacs ()
   "open ~/.emacs file."
   (interactive)
@@ -296,13 +334,6 @@
 )
 
 ;; Open macro.tex
-(if (string-equal system-name "CSLP009526")
-    (setq macrotexfile "~/Files/TeX/marco.tex")
-    (if (string-equal system-name "Hirokis-MacBook-Air.local")
-	(setq macrotexfile "~/Library/texmf/tex/latex/macro/macro.tex")
-        (setq macrotexfile "~/Files/TeX/macro.tex")
-    )
-)
 (defun open-macro-tex ()
   "open macro.tex file."
   (interactive)
