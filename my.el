@@ -164,13 +164,13 @@
 " "%#!pdflatex \\documentclass...")
 
 ("preamble tikz standalone" "%#!pdflatex
-\documentclass[class=minimal,border=0pt]{standalone}
-\usepackage{graphicx}
-\usepackage{amsmath, amssymb}
-\pagestyle{empty}
-\usepackage{tikz}
-\usetikzlibrary{arrows,decorations.pathmorphing}
-" "\documentclass[class=minimal,border=0pt]{standalone}")
+\\documentclass[class=minimal,border=0pt]{standalone}
+\\usepackage{graphicx}
+\\usepackage{amsmath, amssymb}
+\\pagestyle{empty}
+\\usepackage{tikz}
+\\usetikzlibrary{arrows,decorations.pathmorphing}
+" "\\documentclass[class=minimal,border=0pt]{standalone}")
 
 ("beamer two-column" "\\begin{columns}
 \\column{0.5\\textwidth}
