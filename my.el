@@ -36,7 +36,9 @@
 (setq default-frame-alist initial-frame-alist)
 
 ;; emacs server
-(server-start)
+(require 'server)
+(unless (server-running-p)
+  (server-start))
 
 ;; coloring characters
 ;(global-font-lock-mode t)
@@ -149,7 +151,7 @@
 \\usepackage{simplemargins}
 \\usepackage{titling}
 \\setallmargins{1in}
-\\setlength{\droptitle}{-1in}
+\\setlength{\\droptitle}{-1in}
 " "%#!latexmk \\documentclass...")
 
 ("preamble pdflatex" "%#!pdflatex
@@ -160,7 +162,7 @@
 \\usepackage{simplemargins}
 \\usepackage{titling}
 \\setallmargins{1in}
-\\setlength{\droptitle}{-1in}
+\\setlength{\\droptitle}{-1in}
 " "%#!pdflatex \\documentclass...")
 
 ("preamble tikz standalone" "%#!pdflatex
