@@ -67,6 +67,8 @@
 (if (>= emacs-major-version 23)
     (global-visual-line-mode t))
 
+;(setq debug-on-error t)
+
 ;=======================================================================
 ; machine dependent variables
 ;=======================================================================
@@ -80,6 +82,7 @@
 	(progn
 	    (setq dotemacsfile "~/.emacs.d/.emacs-git/my.el")
 	    (setq macrotexfile "~/Library/texmf/tex/latex/macro/macro.tex")
+	    (setq keyfile "~/.emacs.d/.emacs-git/emacs-keys")
 	)
         (progn
             (setq dotemacsfile "~/.emacs.d/my.el")
@@ -148,9 +151,9 @@
 \\usepackage[dvipdfm]{graphicx}
 \\usepackage{amsmath, amssymb}
 \\usepackage{import}
-\\usepackage{simplemargins}
+\\usepackage{geometry}
 \\usepackage{titling}
-\\setallmargins{1in}
+\\geometry{margin=1in}
 \\setlength{\\droptitle}{-1in}
 " "%#!latexmk \\documentclass...")
 
@@ -159,9 +162,9 @@
 \\usepackage{graphicx}
 \\usepackage{amsmath, amssymb}
 \\usepackage{import}
-\\usepackage{simplemargins}
+\\usepackage{geometry}
 \\usepackage{titling}
-\\setallmargins{1in}
+\\geometry{margin=1in}
 \\setlength{\\droptitle}{-1in}
 " "%#!pdflatex \\documentclass...")
 
@@ -211,7 +214,7 @@
 ;=======================================================================
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 (setq auto-mode-alist (cons '("\\.tex$" . yatex-mode) auto-mode-alist))
-(add-to-list 'load-path "~/.emacs.d/site-lisp/yatex1.76")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/yatex1.77")
 ;(setq YaTeX-kanji-code 1)
 
 ;; latex command
@@ -220,7 +223,17 @@
   (setq tex-command "latex") ;else part
  )
 
-(setq dvi2-command "C:/dviout/dviout.exe") ; previewer command
+;; previewer command
+(if (string-equal system-name "CSLP009526")
+    (setq dvi2-command "C:/dviout/dviout.exe")
+  (if (string-equal system-name "TOSHIBA")
+      (setq dvi2-command "C:/dviout/dviout.exe")
+    (if (string-equal system-name "Hirokis-MacBook-Air.local")
+	(setq dvi2-command "/Applications/Skim.app/Contents/MacOS/Skim")
+      )
+    )
+  )
+  
 ;(setq bibtex-command "jbibtex") ;bibtex command
 (setq dviprint-command-format "dvipdfm %s ") ;print to pdf file
 
@@ -274,6 +287,7 @@
 ;; 	(nil ?t nil "~\\reftab{%s}" nil nil))) ;Change the reference commands for equation, figure, and section.
 
 (setq reftex-insert-label-flags '("s" "sfte")) ;In a section enviroment, the label is derived automatically. In other enviroments, it prompts a user.
+(setq reftex-ref-macro-prompt nil)
 
 ;=======================================================================
 ; Emacs lisp mode
@@ -340,6 +354,13 @@
   "open macro.tex file."
   (interactive)
   (find-file macrotexfile)
+)
+
+;; Open emacs-keys
+(defun open-emacs-keys ()
+  "open emacs-keys file."
+  (interactive)
+  (find-file keyfile)
 )
 
 ;=======================================================================
