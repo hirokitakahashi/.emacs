@@ -37,7 +37,7 @@ C-c b f		begin figure
 C-c b d		begin document
 C-c b T		begin Tabular
 C-c s 		section
-C-c '		jumpt to error
+C-c '		jump to error
 
 = Reftex commands =
 C-c (		insert \label
