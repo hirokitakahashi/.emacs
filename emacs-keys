@@ -1,0 +1,55 @@
+= move commands =
+C-f    		move forward by one character
+C-b		move backward by one character 
+M-f		move forward by one word
+M-b		move backward by one word
+C-n		next line
+C-p		previous line
+C-v		scroll one page
+M-v		scroll back one page
+C-a		to the beginning of the line
+C-e		to the end of the line
+M-<right>	same as M-f
+M-<left>	same as M-b
+M-<		Jump to the beginning of the buffer
+M->		Jump to the end of the buffer
+
+= file commands =
+C-x C-f		open
+C-x C-v		open alternate
+C-x C-s		save
+C-x C-w		save as
+
+= edit commands =
+C-s    		serch forward
+C-r		search backward
+C-<space>	mark starts
+C-w		cut
+M-w		copy
+C-y		paste
+C-x h		mark whole buffer
+M-;		comment-dwim (versatile comment function)
+
+= Yatex commands =
+C-c b e		begin enumerate
+C-c b i		begin itemize
+C-c b f		begin figure
+C-c b d		begin document
+C-c b T		begin Tabular
+C-c s 		section
+C-c '		jump to error
+
+= Reftex commands =
+C-c (		insert \label
+C-c )		insert \ref
+C-c [		insert \cite
+C-c =		create TOC
+C-u C-c =	recreate TOC
+
+= bibtex-mode commands =
+C-c C-e C-a   article
+C-c C-e b     book
+C-c C-e p     proceedings
+C-c C-e P     PhD thesis
+C-c C-e C-u   unpublished
+C-c C-c	      assign a name to entry   
