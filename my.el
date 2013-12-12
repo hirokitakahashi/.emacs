@@ -72,7 +72,7 @@
 (if (string-equal system-name "CSLP009526") ;Dell laptop
     (progn
         (setq dotemacsfile "~/MyPrograms/dot_emacs/trunk/my.el")
-	(setq macrotexfile "~/Files/TeX/marco.tex")
+	(setq macrotexfile "~/Files/TeX/macro.tex")
     )
     (if (string-equal system-name "Hirokis-MacBook-Air.local")
 	(progn
@@ -80,7 +80,7 @@
 	    (setq macrotexfile "~/Library/texmf/tex/latex/macro/macro.tex")
 	)
         (progn
-            (setq dotemacsfile "~/.emacs.d/my.el")
+            (setq dotemacsfile "~/.emacs.d/.emacs-git/my.el")
 	    (setq macrotexfile "~/Files/TeX/macro.tex")
 	)
     )
@@ -149,7 +149,7 @@
 \\usepackage{simplemargins}
 \\usepackage{titling}
 \\setallmargins{1in}
-\\setlength{\droptitle}{-1in}
+\\setlength{\\droptitle}{-1in}
 " "%#!latexmk \\documentclass...")
 
 ("preamble pdflatex" "%#!pdflatex
@@ -160,17 +160,17 @@
 \\usepackage{simplemargins}
 \\usepackage{titling}
 \\setallmargins{1in}
-\\setlength{\droptitle}{-1in}
+\\setlength{\\droptitle}{-1in}
 " "%#!pdflatex \\documentclass...")
 
 ("preamble tikz standalone" "%#!pdflatex
-\documentclass[class=minimal,border=0pt]{standalone}
-\usepackage{graphicx}
-\usepackage{amsmath, amssymb}
-\pagestyle{empty}
-\usepackage{tikz}
-\usetikzlibrary{arrows,decorations.pathmorphing}
-" "\documentclass[class=minimal,border=0pt]{standalone}")
+\\documentclass[class=minimal,border=0pt]{standalone}
+\\usepackage{graphicx}
+\\usepackage{amsmath, amssymb}
+\\pagestyle{empty}
+\\usepackage{tikz}
+\\usetikzlibrary{arrows,decorations.pathmorphing}
+" "\\documentclass[class=minimal,border=0pt]{standalone}")
 
 ("beamer two-column" "\\begin{columns}
 \\column{0.5\\textwidth}
