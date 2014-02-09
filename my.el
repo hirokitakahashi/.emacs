@@ -72,11 +72,12 @@
 ;=======================================================================
 ; machine dependent variables
 ;=======================================================================
-;; path to .emacs file, macro.tex
+;; path to .emacs file, macro.tex, emacs-keys
 (if (string-equal system-name "CSLP009526") ;Dell laptop
     (progn
-        (setq dotemacsfile "~/MyPrograms/dot_emacs/trunk/my.el")
-	(setq macrotexfile "~/Files/TeX/marco.tex")
+        (setq dotemacsfile "~/.emacs.d/.emacs-git/my.el")
+	(setq macrotexfile "~/Files/TeX/macro.tex")
+	(setq keyfile "~/.emacs.d/.emacs-git/emacs-keys")
     )
     (if (string-equal system-name "Hirokis-MacBook-Air.local")
 	(progn
@@ -119,23 +120,6 @@
 (setq auto-install-directory "~/.emacs.d/site-lisp/")
 
 ;=======================================================================
-; anything
-;=======================================================================
-
-;(require 'anything-config)
-;(add-to-list 'anything-sources 'anything-c-source-emacs-commands)
-;; (define-key ctl-x-map (kbd "C-a") 'anything) ;Ctrl-x Ctrl-a for anything command
-;; (setq anything-sources
-;;       '(anything-c-source-buffers+
-;; 	anything-c-source-recentf
-;; 	anything-c-source-emacs-variables
-;; 	anything-c-source-emacs-commands
-;; 	anything-c-source-emacs-functions
-;; 	anything-c-source-files-in-current-dir
-;; 	anything-c-source-kill-ring
-;; 	))
-
-;=======================================================================
 ; yasnippet
 ;=======================================================================
 
@@ -150,6 +134,7 @@
 \\documentclass[a4paper,11pt]{article}
 \\usepackage[dvipdfm]{graphicx}
 \\usepackage{amsmath, amssymb}
+\\usepackage[T1]{fontenc}
 \\usepackage{import}
 \\usepackage{geometry}
 \\usepackage{titling}
@@ -161,12 +146,17 @@
 \\documentclass[a4paper,11pt]{article}
 \\usepackage{graphicx}
 \\usepackage{amsmath, amssymb}
+\\usepackage[T1]{fontenc}
 \\usepackage{import}
 \\usepackage{geometry}
 \\usepackage{titling}
 \\geometry{margin=1in}
 \\setlength{\\droptitle}{-1in}
 " "%#!pdflatex \\documentclass...")
+
+("bibtex statement" "\\bibliographystyle{BIB STYLE}
+\\bibliography{LIST .BIB FILES HERE}
+" "\\bibliographystyle{...")
 
 ("preamble tikz standalone" "%#!pdflatex
 \\documentclass[class=minimal,border=0pt]{standalone}
