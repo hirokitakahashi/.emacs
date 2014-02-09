@@ -86,7 +86,7 @@
 	    (setq keyfile "~/.emacs.d/.emacs-git/emacs-keys")
 	)
         (progn
-            (setq dotemacsfile "~/.emacs.d/my.el")
+            (setq dotemacsfile "~/.emacs.d/.emacs-git/my.el")
 	    (setq macrotexfile "~/Files/TeX/macro.tex")
 	)
     )
