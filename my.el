@@ -76,7 +76,7 @@
 (if (string-equal system-name "CSLP009526") ;Dell laptop
     (progn
         (setq dotemacsfile "~/.emacs.d/.emacs-git/my.el")
-	(setq macrotexfile "~/Files/TeX/macro.tex")
+	(setq macrotexfile "~/Files/latex-macro/macro.tex")
 	(setq keyfile "~/.emacs.d/.emacs-git/emacs-keys")
     )
     (if (string-equal system-name "Hirokis-MacBook-Air.local")
@@ -135,6 +135,7 @@
 \\usepackage[dvipdfm]{graphicx}
 \\usepackage{amsmath, amssymb}
 \\usepackage[T1]{fontenc}
+\\usepackage{times}
 \\usepackage{import}
 \\usepackage{geometry}
 \\usepackage{titling}
@@ -147,6 +148,7 @@
 \\usepackage{graphicx}
 \\usepackage{amsmath, amssymb}
 \\usepackage[T1]{fontenc}
+\\usepackage{times}
 \\usepackage{import}
 \\usepackage{geometry}
 \\usepackage{titling}
@@ -253,6 +255,18 @@
 ;	  '(lambda ()
 ;	     (local-set-key "\C-c\C-c" 'comment-region)
 ;	     (local-set-key "\C-c\C-u" 'uncomment-region) ))
+
+(defun open-pdf ()
+  (interactive)
+  (call-process "C:/Program Files (x86)/SumatraPDF/SumatraPDF.exe" nil 0 nil (concat (file-name-sans-extension buffer-file-name) ".pdf"))
+  )
+
+(add-hook 'yatex-mode-hook
+	  '(lambda ()
+	     (local-set-key "\C-co" 'open-pdf)
+	     )
+	  )
+	     
 
 ;=======================================================================
 ; RefTeX

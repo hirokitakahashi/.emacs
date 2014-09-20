@@ -23,6 +23,7 @@ C-x C-w		save as
 = edit commands =
 C-s    		serch forward
 C-r		search backward
+M-%		search and replace
 C-<space>	mark starts
 C-w		cut
 M-w		copy
