@@ -256,9 +256,10 @@
 ;	     (local-set-key "\C-c\C-c" 'comment-region)
 ;	     (local-set-key "\C-c\C-u" 'uncomment-region) ))
 
+; open pdf file with SumatraPDF
 (defun open-pdf ()
   (interactive)
-  (call-process "C:/Program Files (x86)/SumatraPDF/SumatraPDF.exe" nil 0 nil (concat (file-name-sans-extension buffer-file-name) ".pdf"))
+  (call-process "C:/Program Files (x86)/SumatraPDF/SumatraPDF.exe" nil 0 nil "-reuse-instance" (concat (file-name-sans-extension buffer-file-name) ".pdf"))
   )
 
 (add-hook 'yatex-mode-hook
