@@ -259,7 +259,10 @@
 ; open pdf file with SumatraPDF
 (defun open-pdf ()
   (interactive)
-  (call-process "C:/Program Files (x86)/SumatraPDF/SumatraPDF.exe" nil 0 nil "-reuse-instance" (concat (file-name-sans-extension buffer-file-name) ".pdf"))
+  (if (string-equal system-name "ORUCEVIC-OFFICE")
+      (call-process "C:/Program Files/SumatraPDF/SumatraPDF.exe" nil 0 nil "-reuse-instance" (concat (file-name-sans-extension buffer-file-name) ".pdf"))
+     (call-process "C:/Program Files (x86)/SumatraPDF/SumatraPDF.exe" nil 0 nil "-reuse-instance" (concat (file-name-sans-extension buffer-file-name) ".pdf"))
+     )
   )
 
 (defun clean-latex-files (ans)
