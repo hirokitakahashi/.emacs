@@ -262,11 +262,34 @@
   (call-process "C:/Program Files (x86)/SumatraPDF/SumatraPDF.exe" nil 0 nil "-reuse-instance" (concat (file-name-sans-extension buffer-file-name) ".pdf"))
   )
 
+(defun clean-latex-files (ans)
+  (interactive "sRemove all the intermediate latex files? y or n ")
+  (progn
+    (if (string-equal ans "y")
+	(let (filename extlist (count 0))
+	  (setq extlist `(".aux" ".bbl" ".blg" ".fdb_latexmk" ".fls" ".log" ".out"))
+	  (dolist (ext extlist)
+	    (setq filename (concat (file-name-sans-extension buffer-file-name) ext))
+	    (if (file-exists-p filename)
+		(progn
+		  (delete-file filename)
+		  (setq count (1+ count))
+		)
+	    )
+	  )
+	  (message "%d files deleted." count)
+	)
+    )
+  )
+)
+      
+    
 (add-hook 'yatex-mode-hook
 	  '(lambda ()
 	     (local-set-key "\C-co" 'open-pdf)
+	     (local-set-key "\C-cr" 'clean-latex-files)
 	     )
-	  )
+      )
 	     
 
 ;=======================================================================
