@@ -394,6 +394,12 @@
   (find-file keyfile)
 )
 
+(defun delete-server-file ()
+  "delete .emacs.d/sever/server"
+  (interactive)
+  (delete-file "~/.emacs.d/server/server")
+)
+
 ;=======================================================================
 ; mic-paren
 ;=======================================================================
